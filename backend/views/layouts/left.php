@@ -72,6 +72,17 @@
                             ['label' => '菜单管理', 'icon' => 'fa fa-circle-o', 'url' => '/admin/menu'],
                         ],
                     ],
+                    [
+                        'label' => '菜单管理',
+                        'icon' => 'fa fa-circle-o',
+                        'url' => 'javascript:;',
+                        'items' => [
+                            ['label' => '医院管理', 'icon' => '', 'url' => ''],
+                            ['label' => '科室管理', 'icon' => '', 'url' => ''],
+                            ['label' => '巡诊管理', 'icon' => '', 'url' => ''],
+                            ['label' => '医生管理', 'icon' => '', 'url' => ''],
+                        ],
+                    ],
                 ],
             ]
         ) ?>
