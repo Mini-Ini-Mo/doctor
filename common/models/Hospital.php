@@ -12,7 +12,7 @@ use Yii;
  * @property string $intro 医院简介
  * @property string $address 医院地址
  * @property string $tel 联系电话
- * @property int $hgrader 医院等级
+ * @property int $grader 医院等级
  */
 class Hospital extends \yii\db\ActiveRecord
 {
@@ -30,9 +30,9 @@ class Hospital extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'hgrader'], 'required'],
+            [['name', 'grader'], 'required'],
             [['intro'], 'string'],
-            [['hgrader'], 'integer'],
+            [['grader'], 'integer'],
             [['name'], 'string', 'max' => 100],
             [['address'], 'string', 'max' => 64],
             [['tel'], 'string', 'max' => 16],
@@ -46,11 +46,11 @@ class Hospital extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'intro' => 'Intro',
-            'address' => 'Address',
-            'tel' => 'Tel',
-            'hgrader' => 'Hgrader',
+            'name' => '医院',
+            'intro' => '简介',
+            'address' => '地址',
+            'tel' => '联系电话',
+            'grader' => '医院等级',
         ];
     }
 }

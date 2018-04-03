@@ -5,19 +5,19 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "dymy_hgrader".
+ * This is the model class for table "dymy_grader".
  *
  * @property int $id 主键
  * @property string $name 等级名称
  */
-class Hgrader extends \yii\db\ActiveRecord
+class Grader extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'dymy_hgrader';
+        return 'dymy_grader';
     }
 
     /**
@@ -38,7 +38,7 @@ class Hgrader extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
+            'name' => '级别',
         ];
     }
 }
