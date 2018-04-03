@@ -33,7 +33,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'intro:ntext',
             'address',
             'tel',
-            'grader',
+            ['attribute'=>'grader','value'=>function($model){
+                $data = \common\models\Grader::find()->where(['id'=>$model->grader])->one();
+                return $data['name'];
+            }]
         ],
     ]) ?>
 

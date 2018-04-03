@@ -20,7 +20,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'tel')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'grader')->textInput() ?>
+    <?= $form->field($model, 'grader')->dropDownList(\yii\helpers\ArrayHelper::map(\common\models\Grader::find()->all(),'id','name'),['prompt' => ['text'=>'请选择', 'options'=>['value'=>0]]]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

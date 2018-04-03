@@ -14,6 +14,7 @@ use Yii;
  * @property string $birthday 生日
  * @property int $gender 0未知1男2女
  * @property string $intro 简介
+ * @property int $did 科室
  */
 class Doctor extends \yii\db\ActiveRecord
 {
@@ -32,7 +33,7 @@ class Doctor extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['hid', 'gender'], 'integer'],
+            [['hid', 'gender', 'did'], 'integer'],
             [['birthday'], 'safe'],
             [['intro'], 'string'],
             [['name'], 'string', 'max' => 40],
@@ -53,6 +54,7 @@ class Doctor extends \yii\db\ActiveRecord
             'birthday' => '出生日期',
             'gender' => '性别',
             'intro' => '简介',
+            'did' => '科室',
         ];
     }
 }
