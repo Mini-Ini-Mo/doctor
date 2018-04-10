@@ -25,12 +25,26 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             'name',
             'position',
-            'hid',
-            'birthday',
-            //'gender',
+            ['attribute'=>'hid','value'=>function($model){
+                $data = \common\models\Hospital::find()->where(['id'=>$model->hid])->one();
+                return $data['name'];
+            }],
+            //'birthday',
+            ['attribute'=>'did','value'=>function($model){
+                $data = \common\models\Department::find()->where(['id'=>$model->did])->one();
+                return $data['name'];
+            }],
+            ['attribute'=>'gender','value'=>function($model){
+                if($model->gender == 1) {
+                    return '男';
+                }else if($model->gender == 2)
+                {
+                    return '女';
+                }
+            }],
             //'intro:ntext',
 
             ['class' => 'yii\grid\ActionColumn'],

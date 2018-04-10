@@ -18,7 +18,7 @@ class DoctorSearch extends Doctor
     public function rules()
     {
         return [
-            [['id', 'hid', 'gender'], 'integer'],
+            [['id', 'hid', 'gender', 'did'], 'integer'],
             [['name', 'position', 'birthday', 'intro'], 'safe'],
         ];
     }
@@ -62,6 +62,7 @@ class DoctorSearch extends Doctor
             'id' => $this->id,
             'hid' => $this->hid,
             'birthday' => $this->birthday,
+            'did' => $this->did,
             'gender' => $this->gender,
         ]);
 

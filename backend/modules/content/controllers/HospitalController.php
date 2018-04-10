@@ -2,9 +2,11 @@
 
 namespace backend\modules\content\controllers;
 
+use common\models\HospitalDep;
 use Yii;
 use common\models\Hospital;
 use backend\models\search\HospitalSearch;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -27,6 +29,51 @@ class HospitalController extends Controller
                 ],
             ],
         ];
+    }
+
+    public function actions()
+    {
+        return [
+            'upload' => [
+                'class' => 'common\widgets\file_upload\UploadAction',
+                'config' => [
+                    'imagePathFormat' => '/static/upload/hospital/logo/{yyyy}{mm}{dd}/{time}{rand:6}',
+                ]
+            ],
+        ];
+    }
+
+    public function actionAssign($id)
+    {
+        if(Yii::$app->request->isPost){
+            $data = $_POST['HospitalDep'];
+            print_R($data);die;
+            if($data){
+                HospitalDep::deleteAll(['hid'=>$id]);
+                $bigData = [];
+                foreach($data['did'] as $d){
+                    $bigData[] = [
+                        'hid' => $id,
+                        'did' => $d,
+                        'level' => 1
+                    ];
+                }
+                $row = Yii::$app->db->createCommand()->batchInsert(HospitalDep::tableName(),['hid','did','level'],$bigData)->execute();
+                if($row)
+                {
+                    return $this->redirect(['index']);
+                }
+            }
+        }
+
+        $model = new HospitalDep();
+        $arr = ArrayHelper::map($model->find()->where(['hid'=>$id])->all(),'id','did');
+        $model->did = $arr;
+
+        return $this->render('assign', [
+            'model' => $model,
+            'id'=>$id,
+        ]);
     }
 
     /**

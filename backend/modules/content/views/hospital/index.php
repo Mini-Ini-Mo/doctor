@@ -32,7 +32,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'tel',
             //'grader',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {update} {delete} {assign}',
+                'buttons' => [
+                    'assign' => function ($url, $model, $key) {
+                        return  Html::a('<span class="glyphicon glyphicon-log-in"></span>', $url, ['title' => '分配科室','style'=>'margin:0px 6px;'] ) ;
+                    },
+                ],
+                'headerOptions' => ['width' => '180']
+            ],
         ],
     ]); ?>
 </div>

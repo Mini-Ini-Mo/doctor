@@ -29,6 +29,18 @@ class DoctorController extends Controller
         ];
     }
 
+    public function actions()
+    {
+        return [
+            'upload' => [
+                'class' => 'common\widgets\file_upload\UploadAction',
+                'config' => [
+                    'imagePathFormat' => '/static/upload/hospital/logo/{yyyy}{mm}{dd}/{time}{rand:6}',
+                ]
+            ],
+        ];
+    }
+
     /**
      * Lists all Doctor models.
      * @return mixed

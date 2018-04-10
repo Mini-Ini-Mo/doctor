@@ -19,6 +19,9 @@ return [
         'content' => [
             'class' => 'backend\modules\content\Module',
         ],
+        'business' => [
+            'class' => 'backend\modules\business\Module',
+        ],
     ],
     "aliases" => [
         "@mdm/admin" => "@vendor/mdmsoft/yii2-admin",

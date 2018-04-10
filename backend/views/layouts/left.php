@@ -30,7 +30,7 @@
         </form>
         <!-- /.search form -->
 
-        <?= dmstr\widgets\Menu::widget(
+        <?php /*dmstr\widgets\Menu::widget(
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
@@ -65,18 +65,6 @@
                         ],
                     ],
                     [
-                        'label' => '权限管理',
-                        'icon' => 'fa fa-circle-o',
-                        'url' => 'javascript:;',
-                        'items' => [
-                            ['label' => '路由管理', 'icon' => 'fa fa-circle-o', 'url' => '/admin/route'],
-                            ['label' => '权限管理', 'icon' => 'fa fa-circle-o', 'url' => '/admin/permission'],
-                            ['label' => '角色管理', 'icon' => 'fa fa-circle-o', 'url' => '/admin/role'],
-                            ['label' => '用户与角色', 'icon' => 'fa fa-circle-o', 'url' => '/admin/assignment'],
-                            ['label' => '菜单管理', 'icon' => 'fa fa-circle-o', 'url' => '/admin/menu'],
-                        ],
-                    ],
-/*                     [
                         'label' => '菜单管理',
                         'icon' => 'fa fa-circle-o',
                         'url' => 'javascript:;',
@@ -86,10 +74,10 @@
                             ['label' => '巡诊管理', 'icon' => '', 'url' => ''],
                             ['label' => '医生管理', 'icon' => '', 'url' => ''],
                         ],
-                    ], */
+                    ],
                 ],
             ]
-        ) ?>
+        ) */?>
         
         
         <?php 

@@ -9,10 +9,11 @@ use Yii;
  *
  * @property string $id 主键
  * @property string $name 医生名字
+ * @property string $img
  * @property string $position
  * @property string $hid 所属医院
  * @property string $birthday 生日
- * @property int $gender 0未知1男2女
+ * @property string $gender 0未知1男2女
  * @property string $intro 简介
  * @property int $did 科室
  */
@@ -37,7 +38,7 @@ class Doctor extends \yii\db\ActiveRecord
             [['birthday'], 'safe'],
             [['intro'], 'string'],
             [['name'], 'string', 'max' => 40],
-            [['position'], 'string', 'max' => 255],
+            [['img', 'position'], 'string', 'max' => 255],
         ];
     }
 
@@ -49,6 +50,7 @@ class Doctor extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => '姓名',
+            'img' => '头像',
             'position' => '职位',
             'hid' => '所属医院',
             'birthday' => '出生日期',

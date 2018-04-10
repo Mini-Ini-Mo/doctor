@@ -9,6 +9,7 @@ use Yii;
  *
  * @property string $id 主键
  * @property string $name 医院名称
+ * @property string $logo
  * @property string $intro 医院简介
  * @property string $address 医院地址
  * @property string $tel 联系电话
@@ -34,6 +35,7 @@ class Hospital extends \yii\db\ActiveRecord
             [['intro'], 'string'],
             [['grader'], 'integer'],
             [['name'], 'string', 'max' => 100],
+            [['logo'], 'string', 'max' => 255],
             [['address'], 'string', 'max' => 64],
             [['tel'], 'string', 'max' => 16],
         ];
@@ -47,6 +49,7 @@ class Hospital extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => '医院',
+            'logo' => 'Logo',
             'intro' => '简介',
             'address' => '地址',
             'tel' => '联系电话',

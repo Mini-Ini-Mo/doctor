@@ -9,7 +9,8 @@ use Yii;
  *
  * @property string $id 主键
  * @property string $hid 医院id
- * @property int $dep_id 科室部门id
+ * @property string $did 科室部门id
+ * @property int $level 1,2
  */
 class HospitalDep extends \yii\db\ActiveRecord
 {
@@ -27,8 +28,8 @@ class HospitalDep extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['hid', 'dep_id'], 'required'],
-            [['hid', 'dep_id'], 'integer'],
+            [['hid', 'did'], 'required'],
+            [['hid', 'did', 'level'], 'integer'],
         ];
     }
 
@@ -40,7 +41,8 @@ class HospitalDep extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'hid' => 'Hid',
-            'dep_id' => 'Dep ID',
+            'did' => 'Did',
+            'level' => 'Level',
         ];
     }
 }
