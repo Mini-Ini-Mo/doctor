@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\modules\content\controllers;
+namespace backend\modules\business\controllers;
 
 use Yii;
 use common\models\Grader;

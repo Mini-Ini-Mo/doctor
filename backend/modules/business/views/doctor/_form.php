@@ -7,7 +7,9 @@ use yii\widgets\ActiveForm;
 /* @var $model common\models\Doctor */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-
+<style>
+    .select2-container .select2-selection--single .select2-selection__rendered{margin-top:0px}
+</style>
 <div class="doctor-form">
 
     <?php $form = ActiveForm::begin(); ?>

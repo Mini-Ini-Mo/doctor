@@ -1,20 +1,18 @@
 <?php
 
-namespace backend\modules\content\controllers;
+namespace backend\modules\business\controllers;
 
-use common\models\HospitalDep;
 use Yii;
-use common\models\Hospital;
-use backend\models\search\HospitalSearch;
-use yii\helpers\ArrayHelper;
+use common\models\Doctor;
+use backend\models\search\DoctorSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * HospitalController implements the CRUD actions for Hospital model.
+ * DoctorController implements the CRUD actions for Doctor model.
  */
-class HospitalController extends Controller
+class DoctorController extends Controller
 {
     /**
      * @inheritdoc
@@ -43,46 +41,13 @@ class HospitalController extends Controller
         ];
     }
 
-    public function actionAssign($id)
-    {
-        if(Yii::$app->request->isPost){
-            $data = $_POST['HospitalDep'];
-            print_R($data);die;
-            if($data){
-                HospitalDep::deleteAll(['hid'=>$id]);
-                $bigData = [];
-                foreach($data['did'] as $d){
-                    $bigData[] = [
-                        'hid' => $id,
-                        'did' => $d,
-                        'level' => 1
-                    ];
-                }
-                $row = Yii::$app->db->createCommand()->batchInsert(HospitalDep::tableName(),['hid','did','level'],$bigData)->execute();
-                if($row)
-                {
-                    return $this->redirect(['index']);
-                }
-            }
-        }
-
-        $model = new HospitalDep();
-        $arr = ArrayHelper::map($model->find()->where(['hid'=>$id])->all(),'id','did');
-        $model->did = $arr;
-
-        return $this->render('assign', [
-            'model' => $model,
-            'id'=>$id,
-        ]);
-    }
-
     /**
-     * Lists all Hospital models.
+     * Lists all Doctor models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new HospitalSearch();
+        $searchModel = new DoctorSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -92,7 +57,7 @@ class HospitalController extends Controller
     }
 
     /**
-     * Displays a single Hospital model.
+     * Displays a single Doctor model.
      * @param string $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -105,13 +70,13 @@ class HospitalController extends Controller
     }
 
     /**
-     * Creates a new Hospital model.
+     * Creates a new Doctor model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Hospital();
+        $model = new Doctor();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -123,7 +88,7 @@ class HospitalController extends Controller
     }
 
     /**
-     * Updates an existing Hospital model.
+     * Updates an existing Doctor model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param string $id
      * @return mixed
@@ -143,7 +108,7 @@ class HospitalController extends Controller
     }
 
     /**
-     * Deletes an existing Hospital model.
+     * Deletes an existing Doctor model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param string $id
      * @return mixed
@@ -157,15 +122,15 @@ class HospitalController extends Controller
     }
 
     /**
-     * Finds the Hospital model based on its primary key value.
+     * Finds the Doctor model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param string $id
-     * @return Hospital the loaded model
+     * @return Doctor the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Hospital::findOne($id)) !== null) {
+        if (($model = Doctor::findOne($id)) !== null) {
             return $model;
         }
 

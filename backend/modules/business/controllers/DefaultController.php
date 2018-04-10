@@ -5,7 +5,7 @@ namespace backend\modules\business\controllers;
 use yii\web\Controller;
 
 /**
- * Default controller for the `business` module
+ * Default controller for the `content` module
  */
 class DefaultController extends Controller
 {

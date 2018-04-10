@@ -7,7 +7,9 @@ use yii\widgets\ActiveForm;
 /* @var $model common\models\Video */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-
+<style>
+    .select2-container .select2-selection--single .select2-selection__rendered{margin-top:0px}
+</style>
 <div class="video-form">
 
     <?php $form = ActiveForm::begin(['options'=>['enctype'=>'multipart/form-data']]); ?>
