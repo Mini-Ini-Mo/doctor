@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\search\GraderSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Graders';
+$this->title = '等级列表';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="grader-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Grader', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('添加级别', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([

@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\search\DoctorSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Doctors';
+$this->title = '医生列表';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="doctor-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Doctor', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('添加医生', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([

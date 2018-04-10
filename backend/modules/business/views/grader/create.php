@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Grader */
 
-$this->title = 'Create Grader';
-$this->params['breadcrumbs'][] = ['label' => 'Graders', 'url' => ['index']];
+$this->title = '添加';
+$this->params['breadcrumbs'][] = ['label' => '级别列表', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="grader-create">
