@@ -55,7 +55,7 @@ $this->registerJs($js, \yii\web\View::POS_END, 'index-swiper-js');
          <div class="col-xs-4">
             
             <div class="thumbnail">
-                  <a href="/index.php?r=jihua/jihua"><img src="images/icon/index_nav_icon2.png" alt="私人医生"></a>
+                  <a href="#"><img src="images/icon/index_nav_icon2.png" alt="私人医生"></a>
                   <div class="caption">
                         <p>私人医生</p>
                   </div>
@@ -63,7 +63,7 @@ $this->registerJs($js, \yii\web\View::POS_END, 'index-swiper-js');
          </div>
          <div class="col-xs-4">
             <div class="thumbnail">
-                <a href="/index.php?r=jihua/jihua"><img src="images/icon/index_nav_icon3.png" alt="快速咨询"></a>
+                <a href="#"><img src="images/icon/index_nav_icon3.png" alt="快速咨询"></a>
                 <div class="caption">
                     <p>快速咨询</p>
                 </div>
