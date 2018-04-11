@@ -59,4 +59,25 @@ class Doctor extends \yii\db\ActiveRecord
             'did' => '科室',
         ];
     }
+    
+    //获取所属医院
+    public function getHospital()
+    {
+         return $this->hasOne(Hospital::className(), ['id' => 'hid'])->select(['name','id']);
+    }
+    
+    //获取所属科室
+    public function getDep()
+    {
+        return $this->hasOne(Department::className(), ['id' => 'did'])->select(['name','id']);
+    }
+    
+    //获取发表文章
+    public function getArticle()
+    {
+        return $this->hasMany(Article::className(), ['author' => 'id']);
+    }
+    
+    
+    
 }

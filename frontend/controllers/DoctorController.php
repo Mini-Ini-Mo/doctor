@@ -4,6 +4,8 @@ namespace frontend\controllers;
 
 use Yii;
 use yii\web\Controller;
+use yii\web\Request;
+use common\models\Doctor;
 
 
 /**
@@ -11,9 +13,23 @@ use yii\web\Controller;
  */
 class DoctorController extends Controller{
     
-    public function actionIndex()
+    public function actionIndex($id)
     {
-        return $this->render('index');
+        $doctor = Doctor::findOne($id);
+        
+        if (empty($doctor)) {
+            $this->redirect(['index/mingyi']);
+        }
+
+        return $this->render('index',['doctor'=>$doctor]);
+    }
+    
+    /**
+     * 预约
+     */
+    public function actionOrder()
+    {
+        return $this->render('order');
     }
     
 }

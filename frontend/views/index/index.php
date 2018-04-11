@@ -32,13 +32,10 @@ $this->registerJs($js, \yii\web\View::POS_END, 'index-swiper-js');
     <div class="swiper-container index-slider">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
-                <a href="" class="slider-a"><img src="images/slider_1.png"></a>
+                <a href="" class="slider-a"><img src="images/index_banner_1.jpg"></a>
             </div>
             <div class="swiper-slide">
-                <a href="" class="slider-a"><img src="images/slider_2.jpg"></a>
-            </div>
-            <div class="swiper-slide">
-                <a href="" class="slider-a"><img src="images/slider_1.png"></a>
+                <a href="" class="slider-a"><img src="images/index_banner_2.jpg"></a>
             </div>
         </div>
         <!-- Add Pagination -->
@@ -86,19 +83,19 @@ $this->registerJs($js, \yii\web\View::POS_END, 'index-swiper-js');
                 <div class="row">
                   <div class="col-xs-12 col-md-6">
                     <a href="#" class="thumbnail">
-                      <img src="images/slider_1.png" alt="...">
+                      <img src="images/mingyi_video_1.jpg" alt="...">
                     </a>
                   </div>
                   
                   <div class="col-xs-12 col-md-6">
                     <a href="#" class="thumbnail">
-                      <img src="images/slider_1.png" alt="...">
+                      <img src="images/mingyi_video_2.jpg" alt="...">
                     </a>
                   </div>
                   
                   <div class="col-xs-12 col-md-6">
                     <a href="#" class="thumbnail">
-                      <img src="images/slider_1.png" alt="...">
+                      <img src="images/mingyi_video_3.jpg" alt="...">
                     </a>
                   </div>
                  
@@ -118,72 +115,45 @@ $this->registerJs($js, \yii\web\View::POS_END, 'index-swiper-js');
         <div class="body">
             
             <div class="row">
+
+            <?php 
+            
+                $article = \common\models\Article::find();
+                $article->select(['id', 'title','author','content']);
+                $article->groupBy('author');
+                $list = $article->with('doctor')->limit(3)->all();
+                if (!empty($list)) {
+                    foreach ($list as $item) {
+            ?>
                 <div class="col-xs-12 col-md-6 doctor-post">
                    <div class="media">
                       <div class="media-left">
-                        <a href="#">
-                          <img class="media-object doctor-headerimg" src="images/slider_1.png" alt="">
+                        <a href="<?= Url::toRoute(['doctor/index','id'=>$item->id])?>">
+                          <img class="media-object doctor-headerimg" src="<?= $item->doctor->img?>" alt="">
                         </a>
                       </div>
                       <div class="media-body">
-                        <h4 class="media-heading">Media heading</h4>
-                        <p>22222222222</p>
+                        <h4 class="media-heading"><?= $item->doctor->name?></h4>
+                        <p><?= $item->doctor->hospital->name?></p>
                       </div>
                     </div>
                     
                     <div class="post">
-                        <h4 class="post-title">测试标题测试标题测试标题测试标题</h4>
-                        <div class="post-intro">测试标题测试标题测试标题测试标题</div>
+                        <h4 class="post-title"><?= $item->title?></h4>
+                        <div class="post-intro"><?= $item->content?></div>
                         <div class="post-footer">
                             <span>阅读&nbsp;20</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>点赞&nbsp;20</span>
                         </div>
                     </div>
                  </div>
                  
-                <div class="col-xs-12 col-md-6 doctor-post">
-                   <div class="media">
-                      <div class="media-left">
-                        <a href="#">
-                          <img class="media-object doctor-headerimg" src="images/slider_1.png" alt="">
-                        </a>
-                      </div>
-                      <div class="media-body">
-                        <h4 class="media-heading">Media heading</h4>
-                        <p>22222222222</p>
-                      </div>
-                    </div>
-                    <div class="post">
-                        <h4 class="post-title">测试标题测试标题测试标题测试标题</h4>
-                        <div class="post-intro">测试标题测试标题测试标题测试标题</div>
-                        <div class="post-footer">
-                            <span>阅读&nbsp;20</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>点赞&nbsp;20</span>
-                        </div>
-                    </div>
-                 </div>
-                
-                <div class="col-xs-12 col-md-6 doctor-post">
-                   <div class="media">
-                      <div class="media-left">
-                        <a href="#">
-                          <img class="media-object doctor-headerimg" src="images/slider_1.png" alt="">
-                        </a>
-                      </div>
-                      <div class="media-body">
-                        <h4 class="media-heading">Media heading</h4>
-                        <p>22222222222</p>
-                      </div>
-                    </div>
-                    <div class="post">
-                        <h4 class="post-title">测试标题测试标题测试标题测试标题</h4>
-                        <div class="post-intro">测试标题测试标题测试标题测试标题</div>
-                        <div class="post-footer">
-                            <span>阅读&nbsp;20</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>点赞&nbsp;20</span>
-                        </div>
-                    </div>
-                 </div>
+                 <?php 
+                        }
+                    }
+                 ?>
+
             </div>
-        
-        
+
         </div>
     </div>
     

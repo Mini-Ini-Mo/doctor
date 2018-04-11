@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\Url;
 /**
 * 
 * @author lyy
@@ -32,15 +33,15 @@ $this->registerJs($js, \yii\web\View::POS_END, 'doctor-swiper-js');
     <div class="base-info row">
         <div class="col-xs-8">
             <div class="header">
-                <div class="row_1"><h4 class="name">程倩</h4><span class="tags">妇科</span><span class="tags">主治医师</span></div>
-                <p class="row_2">301医院</p>
+                <div class="row_1"><h4 class="name"><?= $doctor->name?></h4><span class="tags"><?= $doctor->dep->name?></span></div>
+                <p class="row_2"><?= $doctor->hospital->name?></p>
             </div>
             <div class="body">
-            程倩程倩程倩程倩程倩程倩程倩程倩程倩程倩程倩程倩程倩程倩程倩程倩
+            <?= $doctor->intro?>
             </div>
         </div>
         <div class="col-xs-4 ">
-            <img class="headerimg" src="images/slider_1.png" style="width:100%;">
+            <img class="headerimg" src="<?= $doctor->img?>" style="width:100%;">
         </div>
     </div>
     
@@ -85,21 +86,24 @@ $this->registerJs($js, \yii\web\View::POS_END, 'doctor-swiper-js');
         <div class="clearfix"></div>
     </div>
     <div class="body">
-        <div class="post">
-            <div class="post-header"><h4 class="title">专家讲堂</h4></div>
-            <div class="post-body">专家讲堂专家讲堂专家讲堂专家讲堂专家讲堂专家讲堂专家讲堂专家讲堂专家讲堂专家讲堂专家讲堂专家讲堂</div>
-            <div class="post-footer">
-                <span class="tags">阅读&nbsp;20</span><span class="tags">赞&nbsp;0</span>
-            </div>
-        </div>
+        
+        <?php 
+            $artile = $doctor->article;
+            if (!empty($artile)) {  
+                foreach($artile as $item) {
+        ?>
         
         <div class="post">
-            <div class="post-header"><h4 class="title">专家讲堂</h4></div>
-            <div class="post-body">专家讲堂专家讲堂专家讲堂专家讲堂专家讲堂专家讲堂专家讲堂专家讲堂专家讲堂专家讲堂专家讲堂专家讲堂</div>
+            <div class="post-header"><h4 class="title"><?= $item->title?></h4></div>
+            <div class="post-body"><?= $item->content?></div>
             <div class="post-footer">
                 <span class="tags">阅读&nbsp;20</span><span class="tags">赞&nbsp;0</span>
             </div>
         </div>
+        <?php                     
+                }
+            }
+        ?>
     </div>
 </div>
 
@@ -150,7 +154,7 @@ $this->registerJs($js, \yii\web\View::POS_END, 'doctor-swiper-js');
 
 <div class="doctor-base-info-footer row">
     <a class="func online-wechat">在线咨询</a>
-    <a class="func order-doctor">预约就诊</a>
+    <a class="func order-doctor" href="<?= Url::toRoute(['order'])?>">预约就诊</a>
     <div class="clearfix"></div>
 </div>
 

@@ -49,4 +49,11 @@ class Article extends \yii\db\ActiveRecord
             'created_at' => '创建时间',
         ];
     }
+    
+    public function getDoctor()
+    {
+        return $this->hasOne(Doctor::className(), ['id' => 'author'])->select(['id','name','img','hid']);
+    }
+    
+    
 }
