@@ -1,20 +1,19 @@
 <?php
 
-namespace backend\modules\business\controllers;
+namespace backend\modules\administrator\controllers;
 
-use common\models\HospitalDep;
+use backend\models\form\SignupForm;
 use Yii;
-use common\models\Hospital;
-use backend\models\search\HospitalSearch;
-use yii\helpers\ArrayHelper;
+use common\models\User;
+use backend\models\search\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * HospitalController implements the CRUD actions for Hospital model.
+ * UserController implements the CRUD actions for User model.
  */
-class HospitalController extends Controller
+class UserController extends Controller
 {
     /**
      * @inheritdoc
@@ -31,57 +30,13 @@ class HospitalController extends Controller
         ];
     }
 
-    public function actions()
-    {
-        return [
-            'upload' => [
-                'class' => 'common\widgets\file_upload\UploadAction',
-                'config' => [
-                    'imagePathFormat' => '/static/upload/hospital/logo/{yyyy}{mm}{dd}/{time}{rand:6}',
-                ]
-            ],
-        ];
-    }
-
-    public function actionAssign($id)
-    {
-        if(Yii::$app->request->isPost){
-            $data = Yii::$app->request->post('HospitalDep');
-            if($data){
-                HospitalDep::deleteAll(['hid'=>$id]);
-                $bigData = [];
-                foreach($data['did'] as $d){
-                    $level = in_array($d,$data['level'])?2:1;
-
-                    $bigData[] = [
-                        'hid' => $id,
-                        'did' => $d,
-                        'level' => $level
-                    ];
-                }
-                $row = Yii::$app->db->createCommand()->batchInsert(HospitalDep::tableName(),['hid','did','level'],$bigData)->execute();
-                if($row)
-                {
-                    return $this->redirect(['index']);
-                }
-            }
-        }
-
-        $model = new HospitalDep();
-
-        return $this->render('assign', [
-            'model' => $model,
-            'id'=>$id,
-        ]);
-    }
-
     /**
-     * Lists all Hospital models.
+     * Lists all User models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new HospitalSearch();
+        $searchModel = new UserSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -91,8 +46,8 @@ class HospitalController extends Controller
     }
 
     /**
-     * Displays a single Hospital model.
-     * @param string $id
+     * Displays a single User model.
+     * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -104,16 +59,19 @@ class HospitalController extends Controller
     }
 
     /**
-     * Creates a new Hospital model.
+     * Creates a new User model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Hospital();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $model = new SignupForm();
+        if ($model->load(Yii::$app->request->post())) {
+            if ($user = $model->signup()) {
+                //if (Yii::$app->getUser()->login($user)) {
+                    return $this->redirect(['index']);
+                //}
+            }
         }
 
         return $this->render('create', [
@@ -122,9 +80,9 @@ class HospitalController extends Controller
     }
 
     /**
-     * Updates an existing Hospital model.
+     * Updates an existing User model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param string $id
+     * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -142,9 +100,9 @@ class HospitalController extends Controller
     }
 
     /**
-     * Deletes an existing Hospital model.
+     * Deletes an existing User model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $id
+     * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -156,15 +114,15 @@ class HospitalController extends Controller
     }
 
     /**
-     * Finds the Hospital model based on its primary key value.
+     * Finds the User model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
-     * @return Hospital the loaded model
+     * @param integer $id
+     * @return User the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Hospital::findOne($id)) !== null) {
+        if (($model = User::findOne($id)) !== null) {
             return $model;
         }
 

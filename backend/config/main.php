@@ -22,6 +22,9 @@ return [
         'business' => [
             'class' => 'backend\modules\business\Module',
         ],
+        'administrator' => [
+            'class' => 'backend\modules\administrator\Module',
+        ],
     ],
     "aliases" => [
         "@mdm/admin" => "@vendor/mdmsoft/yii2-admin",
