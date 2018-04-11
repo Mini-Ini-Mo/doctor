@@ -56,6 +56,16 @@ class User extends ActiveRecord implements IdentityInterface
         ];
     }
 
+    public function attributeLabels()
+    {
+        return [
+            'username' => '用户名',
+            'password' => '密码',
+            'email' => '邮箱',
+            'status' => '状态',
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
